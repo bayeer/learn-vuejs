@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Vue, Event handling</title>
+	<style>
+	form div { text-align: center; }
+	</style>
+</head>
+<body>
+	<div id="app">
+		<form action="submitted.html" @submit.prevent="onFormSubmit">
+			<div><button type="submit">Submit</button></div>
+		</form>
+
+		<div>Count: {{ count }}
+			<button @click="updateCount">Count</button>
+			<button @click="count=0">Reset</button>
+		</div>
+		
+
+		<hr>
+
+		<pre>{{ $data | json }}</pre>
+
+	</div>
+
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.28/vue.js"></script>
+	<script>
+		new Vue({
+			el: '#app',
+			data: {
+				count: 0
+			},
+			methods: {
+				onFormSubmit: function() {
+					alert('handled!');
+
+				},
+				updateCount: function() {
+					this.count++;
+				},
+			}
+		})
+	</script>
+</body>
+</html>
