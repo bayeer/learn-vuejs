@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Vue - Binding 2</title>
+</head>
+<body>
+
+	<div id="app">
+		<div>Selected color: {{ color }}</div>
+		<input type="color" v-model="color">
+	</div>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.28/vue.js"></script>
+	<script>
+		//Vue.components('my-counter');
+
+		new Vue({
+			el: '#app',
+			data: {
+				color: '#000'
+			},
+			methods: {
+				onColorSelect: function() {
+					this.color = this.value
+				}
+			}
+		})
+	</script>
+</body>
+</html>
