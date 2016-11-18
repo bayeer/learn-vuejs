@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Vue, V-show</title>
+	<style>
+	.error-label { color: red; display: block; font-style: italic;}
+	</style>
+</head>
+<body>
+	<div id="app">
+		<form>
+			<span class="error-label" v-show="!message">You must enter a message</span>
+			<textarea name="txt-message" id="txt-message" cols="30" rows="10" v-model="message"></textarea>
+			<div><button type="submit" v-show="message">Send message</button></div>
+
+		</form>
+
+		<pre>{{ $data }}</pre>
+
+	</div>
+
+
+	<script src="https://unpkg.com/vue/dist/vue.js"></script>
+	<script>
+		new Vue({
+			el: '#app',
+			data: {
+				message: ''
+			}
+		})
+	</script>
+</body>
+</html>
