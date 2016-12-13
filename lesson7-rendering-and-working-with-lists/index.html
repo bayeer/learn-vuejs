@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vuejs, Lesson 7. Rendering and working with lists</title>
+    <style>
+    li { cursor: pointer; user-select: none; -webkit-user-select: none; }
+    li.completed { text-decoration: line-through; }
+    </style>
+</head>
+<body>
+    <h1>Vuejs, Lesson 7. Rendering and working with lists</h1>
+    <hr>
+
+    <div id="app">
+        <ul>
+            <li v-for="task in tasks"
+                :class="{ 'completed': task.completed }"
+                @click="toggleTaskState(task)"
+            >
+                {{ task.name }}
+            </li>
+        </ul>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.28/vue.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
