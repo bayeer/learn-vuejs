@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vuejs, Lesson 6. Subscriptions plans exercise</title>
+    <style>
+    .plans-table {
+        width: 300px;
+        border-collapse: collapse;
+        border-spacing: 0;
+    }
+    .plans-table td {
+        border: 1px solid #ccc;
+        padding: 5px 10px;
+    }
+    </style>
+</head>
+<body>
+
+    <h1>Vuejs, Lesson 6. Subscriptions plans exercise</h1>
+    <hr>
+
+    <div id="app">
+        <pre>
+            {{ $data | json }}
+        </pre>
+
+        <table class="plans-table">
+            <tr v-for="plan in plans" is="plan" :x="plan" :active.sync="active"></tr>
+        </table>
+
+    </div>
+
+    <template id="plan-template">
+        <td>{{ x.name }}</td>
+        <td>{{ x.price }}</td>
+        <td>
+            <button @click="setActivePlan" v-if="x.name !== active.name">
+                {{ isUpgrade ? 'Upgrade' : 'Downgrade' }}
+            </button>
+
+            <span v-else>
+                Current
+            </span>
+        </td>
+    </template>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.28/vue.js"></script>
+    <script>
+        Vue.component('plan', {
+            template: '#plan-template',
+            replace: false,
+
+            props: ['x', 'active'],
+
+            data: function() {
+                return {
+                    active: false
+                }
+            },
+
+            computed: {
+                isUpgrade: function() {
+                    return this.x.price > this.active.price;
+                }
+            },
+
+            methods: {
+                setActivePlan: function() {
+                    this.active = this.x;
+                }
+            }
+        });
+
+
+        new Vue({
+            el: '#app',
+            data: {
+                active: false,
+                plans: [
+                    {name: 'Enterprise', price: 100},
+                    {name: 'Pro', price: 50},
+                    {name: 'Personal', price: 10},
+                    {name: 'Free', price: 0},
+                ]
+            }
+        });
+    </script>
+</body>
+</html>
