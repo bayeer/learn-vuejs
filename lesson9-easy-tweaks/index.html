@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vuejs, Lesson 9. Easy tweaks</title>
+    <style>
+    li { cursor: pointer; user-select: none; -webkit-user-select: none; }
+    li.completed { text-decoration: line-through; }
+    </style>
+</head>
+<body>
+    <h1>Vuejs, Lesson 9. Easy tweaks</h1>
+    <hr>
+
+    <div id="app">
+        <tasks :list="tasks"></tasks>
+    </div>
+
+    <template id="tasks-template">
+        <h1>
+            My tasks
+            <span v-show="remaining">({{ remaining }})</span>
+        </h1>
+        <ul v-show="list.length">
+            <li v-for="task in list"
+                :class="{ 'completed': task.completed }"
+                @click="task.completed = !task.completed"
+            >
+                {{ task.name }}
+
+                <a href="#" @click="deleteTask(task)">x</a>
+            </li>
+        </ul>
+        
+        <p v-else>No tasks yet!</p>
+
+        <button @click="clearCompleted()">Clear completed</button>
+    </template>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.28/vue.js"></script>
+    <script src="app.js"></script>
+
+</body>
+</html>
