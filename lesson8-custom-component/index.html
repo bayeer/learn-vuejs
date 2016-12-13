@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vuejs, Lesson 8. Custom component</title>
+    <style>
+    li { cursor: pointer; user-select: none; -webkit-user-select: none; }
+    li.completed { text-decoration: line-through; }
+    </style>
+</head>
+<body>
+    <h1>Vuejs, Lesson 8. Custom component</h1>
+    <hr>
+
+    <div id="app">
+        <tasks :list="tasks"></tasks>
+
+        <tasks :list="[{name: 'test', completed: false}, {name: 'task 2', completed: true}]"></tasks>
+    </div>
+
+    <template id="tasks-template">
+        <ul>
+            <li v-for="task in list"
+                :class="{ 'completed': task.completed }"
+                @click="task.completed = !task.completed"
+            >
+                {{ task.name }}
+            </li>
+        </ul>
+    </template>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.28/vue.js"></script>
+    <script src="app.js"></script>
+
+</body>
+</html>
